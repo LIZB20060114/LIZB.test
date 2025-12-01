@@ -56,7 +56,7 @@ void getNeighbors(int x, int y, MAZECOOR neighbors[], int* count) {
 		(*count)++;
 	}
 	else {
-		printf("  ��: �赲��߽�\n");
+		printf("right\n");
 	}
 
 	printf("���ھ���: %d\n", *count);
