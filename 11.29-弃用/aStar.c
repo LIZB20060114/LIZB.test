@@ -3,7 +3,7 @@
 
 extern int GoalGet, GoalX, GoalY, GucXStart, GucYStart;
 
-// Æô·¢Ê½º¯Êý£¨Âü¹þ¶Ù¾àÀë£©
+// ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¾ï¿½ï¿½ë£©
 int heuristic(int x1, int y1, int x2, int y2) {
 	return abs(x1 - x2) + abs(y1 - y2);
 }
@@ -11,65 +11,65 @@ int heuristic(int x1, int y1, int x2, int y2) {
 void getNeighbors(int x, int y, MAZECOOR neighbors[], int* count) {
 	*count = 0;
 
-	printf("=== A*ÁÚ¾Ó·ÖÎö: (%d,%d) ===\n", x, y);
-	printf("µØÍ¼¿é: 0x%02X\n", GucMapBlock[x][y]);
-	printf("ÒÑËÑË÷: %d\n", GucMapGet[x][y]);
+	printf("=== A*ï¿½Ú¾Ó·ï¿½ï¿½ï¿½: (%d,%d) ===\n", x, y);
+	printf("ï¿½ï¿½Í¼ï¿½ï¿½: 0x%02X\n", GucMapBlock[x][y]);
+	printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: %d\n", GucMapGet[x][y]);
 
-	// ÉÏ·½Ïò
+	// ï¿½Ï·ï¿½ï¿½ï¿½
 	if ((GucMapBlock[x][y] & 0x01) && y + 1 < MAZETYPE) {
 		neighbors[*count].cX = x;
 		neighbors[*count].cY = y + 1;
-		printf("  ÉÏ: (%d,%d) - ¿ÉÍ¨ÐÐ\n", x, y + 1);
+		printf("  ï¿½ï¿½: (%d,%d) - ï¿½ï¿½Í¨ï¿½ï¿½\n", x, y + 1);
 		(*count)++;
 	}
 	else {
-		printf("  ÉÏ: ×èµ²»ò±ß½ç\n");
+		printf("  11111\n");
 	}
 
-	// ÓÒ·½Ïò
+	// ï¿½Ò·ï¿½ï¿½ï¿½
 	if ((GucMapBlock[x][y] & 0x02) && x + 1 < MAZETYPE) {
 		neighbors[*count].cX = x + 1;
 		neighbors[*count].cY = y;
-		printf("  ÓÒ: (%d,%d) - ¿ÉÍ¨ÐÐ\n", x + 1, y);
+		printf("  ï¿½ï¿½: (%d,%d) - ï¿½ï¿½Í¨ï¿½ï¿½\n", x + 1, y);
 		(*count)++;
 	}
 	else {
-		printf("  ÓÒ: ×èµ²»ò±ß½ç\n");
+		printf("  ï¿½ï¿½: ï¿½èµ²ï¿½ï¿½ß½ï¿½\n");
 	}
 
-	// ÏÂ·½Ïò
+	// ï¿½Â·ï¿½ï¿½ï¿½
 	if ((GucMapBlock[x][y] & 0x04) && y - 1 >= 0) {
 		neighbors[*count].cX = x;
 		neighbors[*count].cY = y - 1;
-		printf("  ÏÂ: (%d,%d) - ¿ÉÍ¨ÐÐ\n", x, y - 1);
+		printf("  ï¿½ï¿½: (%d,%d) - ï¿½ï¿½Í¨ï¿½ï¿½\n", x, y - 1);
 		(*count)++;
 	}
 	else {
-		printf("  ÏÂ: ×èµ²»ò±ß½ç\n");
+		printf("  ï¿½ï¿½: ï¿½èµ²ï¿½ï¿½ß½ï¿½\n");
 	}
 
-	// ×ó·½Ïò
+	// ï¿½ï¿½ï¿½ï¿½
 	if ((GucMapBlock[x][y] & 0x08) && x - 1 >= 0) {
 		neighbors[*count].cX = x - 1;
 		neighbors[*count].cY = y;
-		printf("  ×ó: (%d,%d) - ¿ÉÍ¨ÐÐ\n", x - 1, y);
+		printf("  ï¿½ï¿½: (%d,%d) - ï¿½ï¿½Í¨ï¿½ï¿½\n", x - 1, y);
 		(*count)++;
 	}
 	else {
-		printf("  ×ó: ×èµ²»ò±ß½ç\n");
+		printf("  ï¿½ï¿½: ï¿½èµ²ï¿½ï¿½ß½ï¿½\n");
 	}
 
-	printf("×ÜÁÚ¾ÓÊý: %d\n", *count);
+	printf("ï¿½ï¿½ï¿½Ú¾ï¿½ï¿½ï¿½: %d\n", *count);
 }
 
 int aStarSearch(int startX, int startY, int goalX, int goalY, MAZECOOR* path, int* pathLength) {
-    printf("=== A*ËÑË÷¿ªÊ¼: (%d,%d) -> (%d,%d) ===\n", startX, startY, goalX, goalY);
+    printf("=== A*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼: (%d,%d) -> (%d,%d) ===\n", startX, startY, goalX, goalY);
 
     AStarNode nodes[MAZETYPE][MAZETYPE];
     MAZECOOR openList[MAZETYPE * MAZETYPE];
     int openListCount = 0;
 
-    // ³õÊ¼»¯½Úµã
+    // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Úµï¿½
     for (int i = 0; i < MAZETYPE; i++) {
         for (int j = 0; j < MAZETYPE; j++) {
             nodes[i][j].cX = i;
@@ -83,12 +83,12 @@ int aStarSearch(int startX, int startY, int goalX, int goalY, MAZECOOR* path, in
         }
     }
 
-    // ÉèÖÃÆðÊ¼½Úµã
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½Úµï¿½
     nodes[startX][startY].g = 0;
     nodes[startX][startY].h = heuristic(startX, startY, goalX, goalY);
     nodes[startX][startY].f = nodes[startX][startY].g + nodes[startX][startY].h;
 
-    printf("ÆðÊ¼½Úµã: f=%d, g=%d, h=%d\n", nodes[startX][startY].f, nodes[startX][startY].g, nodes[startX][startY].h);
+    printf("ï¿½ï¿½Ê¼ï¿½Úµï¿½: f=%d, g=%d, h=%d\n", nodes[startX][startY].f, nodes[startX][startY].g, nodes[startX][startY].h);
 
     openList[openListCount].cX = startX;
     openList[openListCount].cY = startY;
@@ -98,7 +98,7 @@ int aStarSearch(int startX, int startY, int goalX, int goalY, MAZECOOR* path, in
     while (openListCount > 0 && iteration < 1000) {
         iteration++;
 
-        // ¸Ä½øµÄ½ÚµãÑ¡Ôñ£ºµ±fÖµÏàÍ¬Ê±£¬Ñ¡ÔñhÖµ½ÏÐ¡µÄ
+        // ï¿½Ä½ï¿½ï¿½Ä½Úµï¿½Ñ¡ï¿½ñ£ºµï¿½fÖµï¿½ï¿½Í¬Ê±ï¿½ï¿½Ñ¡ï¿½ï¿½hÖµï¿½ï¿½Ð¡ï¿½ï¿½
         int currentIndex = 0;
         int minF = nodes[openList[0].cX][openList[0].cY].f;
         int minH = nodes[openList[0].cX][openList[0].cY].h;
@@ -117,20 +117,20 @@ int aStarSearch(int startX, int startY, int goalX, int goalY, MAZECOOR* path, in
         int currentX = openList[currentIndex].cX;
         int currentY = openList[currentIndex].cY;
 
-        printf("µü´ú%d: µ±Ç°½Úµã(%d,%d), f=%d, g=%d, h=%d\n",
+        printf("ï¿½ï¿½ï¿½ï¿½%d: ï¿½ï¿½Ç°ï¿½Úµï¿½(%d,%d), f=%d, g=%d, h=%d\n",
             iteration, currentX, currentY, minF, nodes[currentX][currentY].g, nodes[currentX][currentY].h);
 
-        // Èç¹ûµ½´ïÄ¿±ê
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½
         if (currentX == goalX && currentY == goalY) {
-            printf("ÕÒµ½Â·¾¶! ¿ªÊ¼»ØËÝ\n");
+            printf("ï¿½Òµï¿½Â·ï¿½ï¿½! ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½\n");
 
-            // »ØËÝ¹¹½¨Â·¾¶
+            // ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½Â·ï¿½ï¿½
             *pathLength = 0;
             int tempX = currentX, tempY = currentY;
             MAZECOOR tempPath[MAX_PATH_LENGTH];
             int tempLength = 0;
 
-            // ÏÈÊÕ¼¯Â·¾¶µ½ÁÙÊ±Êý×é
+            // ï¿½ï¿½ï¿½Õ¼ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
             while (tempX != -1 && tempY != -1 && tempLength < MAX_PATH_LENGTH) {
                 tempPath[tempLength].cX = tempX;
                 tempPath[tempLength].cY = tempY;
@@ -142,24 +142,24 @@ int aStarSearch(int startX, int startY, int goalX, int goalY, MAZECOOR* path, in
                 tempY = parentY;
             }
 
-            // ·´×ªÂ·¾¶£¨´ÓÆðµãµ½ÖÕµã£©
+            // ï¿½ï¿½×ªÂ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ãµ½ï¿½Õµã£©
             *pathLength = tempLength;
             for (int i = 0; i < tempLength; i++) {
                 if (i >= MAX_PATH_LENGTH) break;
                 path[i] = tempPath[tempLength - 1 - i];
-                printf("Â·¾¶[%d] = (%d,%d)\n", i, path[i].cX, path[i].cY);
+                printf("Â·ï¿½ï¿½[%d] = (%d,%d)\n", i, path[i].cX, path[i].cY);
             }
 
-            printf("»ØËÝÍê³É£¬Â·¾¶³¤¶È=%d\n", *pathLength);
+            printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½=%d\n", *pathLength);
             return 1;
         }
 
-        // ´Ó¿ª·ÅÁÐ±íÒÆ³ý
+        // ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½Æ³ï¿½
         openList[currentIndex] = openList[openListCount - 1];
         openListCount--;
         nodes[currentX][currentY].closed = 1;
 
-        // ¼ì²éÁÚ¾Ó
+        // ï¿½ï¿½ï¿½ï¿½Ú¾ï¿½
         MAZECOOR neighbors[4];
         int neighborCount;
         getNeighbors(currentX, currentY, neighbors, &neighborCount);
@@ -175,7 +175,7 @@ int aStarSearch(int startX, int startY, int goalX, int goalY, MAZECOOR* path, in
             int tentativeG = nodes[currentX][currentY].g + 1;
 
             if (tentativeG < nodes[neighborX][neighborY].g) {
-                printf("  ÁÚ¾Ó(%d,%d): ¸üÐÂÂ·¾¶ g=%d->%d\n", neighborX, neighborY, nodes[neighborX][neighborY].g, tentativeG);
+                printf("  ï¿½Ú¾ï¿½(%d,%d): ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ g=%d->%d\n", neighborX, neighborY, nodes[neighborX][neighborY].g, tentativeG);
 
                 nodes[neighborX][neighborY].parentX = currentX;
                 nodes[neighborX][neighborY].parentY = currentY;
@@ -183,7 +183,7 @@ int aStarSearch(int startX, int startY, int goalX, int goalY, MAZECOOR* path, in
                 nodes[neighborX][neighborY].h = heuristic(neighborX, neighborY, goalX, goalY);
                 nodes[neighborX][neighborY].f = nodes[neighborX][neighborY].g + nodes[neighborX][neighborY].h;
 
-                // ¼ì²éÊÇ·ñÔÚ¿ª·ÅÁÐ±íÖÐ
+                // ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½
                 int inOpenList = 0;
                 for (int j = 0; j < openListCount; j++) {
                     if (openList[j].cX == neighborX && openList[j].cY == neighborY) {
@@ -193,28 +193,28 @@ int aStarSearch(int startX, int startY, int goalX, int goalY, MAZECOOR* path, in
                 }
 
                 if (!inOpenList) {
-                    // ²»ÔÚ¿ª·ÅÁÐ±íÖÐ£¬¼ÓÈë
+                    // ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½
                     openList[openListCount].cX = neighborX;
                     openList[openListCount].cY = neighborY;
                     openListCount++;
-                    printf("  ÁÚ¾Ó(%d,%d): ¼ÓÈë¿ª·ÅÁÐ±í\n", neighborX, neighborY);
+                    printf("  ï¿½Ú¾ï¿½(%d,%d): ï¿½ï¿½ï¿½ë¿ªï¿½ï¿½ï¿½Ð±ï¿½\n", neighborX, neighborY);
                 }
                 else {
-                    // ÒÑ¾­ÔÚ¿ª·ÅÁÐ±íÖÐ£¬ÐèÒªÖØÐÂÅÅÐò£¨Í¨¹ýÏÂ´ÎÑ­»·×ÔÈ»´¦Àí£©
-                    printf("  ÁÚ¾Ó(%d,%d): ÒÑÔÚ¿ª·ÅÁÐ±í£¬ÖµÒÑ¸üÐÂ\n", neighborX, neighborY);
+                    // ï¿½Ñ¾ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½Ð£ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Â´ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½È»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    printf("  ï¿½Ú¾ï¿½(%d,%d): ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Öµï¿½Ñ¸ï¿½ï¿½ï¿½\n", neighborX, neighborY);
                 }
             }
         }
     }
 
-    printf("A*ËÑË÷Ê§°Ü: ¿ª·ÅÁÐ±íÎª¿Õ»òµü´ú³¬ÏÞ\n");
+    printf("A*ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½Îªï¿½Õ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     return 0;
 }
-// »ùÓÚA*µÄÖÇÄÜËÑË÷·½·¨
+// ï¿½ï¿½ï¿½ï¿½A*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void aStarMethod(void) {
 	int targetX, targetY;
 
-	// È·¶¨Ä¿±êµã
+	// È·ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½
 	if (GoalGet) {
 		targetX = GoalX;
 		targetY = GoalY;
@@ -235,11 +235,11 @@ void aStarMethod(void) {
 	int pathLength = 0;
 
 	if (aStarSearch(GmcMouse.cX, GmcMouse.cY, targetX, targetY, path, &pathLength) && pathLength > 1) {
-		// ÕÒµ½Â·¾¶£¬ÒÆ¶¯µ½ÏÂÒ»¸ö¸ñ×Ó
+		// ï¿½Òµï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		int nextX = path[1].cX;
 		int nextY = path[1].cY;
 
-		// ¼ÆËãÒÆ¶¯·½Ïò
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
 		int moveDir;
 		if (nextX == GmcMouse.cX) {
 			if (nextY > GmcMouse.cY) moveDir = UP;
@@ -250,7 +250,7 @@ void aStarMethod(void) {
 			else moveDir = LEFT;
 		}
 
-		// ¼ÆËã×ªÏò½Ç¶È²¢Ö´ÐÐ
+		// ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½Ç¶È²ï¿½Ö´ï¿½ï¿½
 		int turnAngle = (moveDir - GucMouseDir + 4) % 4;
 		switch (turnAngle) {
 		case 1: StepTurnRight(); break;
@@ -263,7 +263,7 @@ void aStarMethod(void) {
 
 	}
 	else {
-		// A*ÕÒ²»µ½Â·¾¶£¬fallbackµ½ºéË®Ìî³ä»òÓÒÊÖ·¨Ôò
+		// A*ï¿½Ò²ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½fallbackï¿½ï¿½ï¿½ï¿½Ë®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 		floodFillMethod();
 	}
 }
